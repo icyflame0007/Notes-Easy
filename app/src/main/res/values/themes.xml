@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Notes" parent="Theme.MaterialComponents.Light">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#8692f7</item>
+        <item name="colorPrimaryVariant">#8692f7</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="popupMenuBackground">@drawable/menu_bg</item>
+        <item name="android:popupMenuStyle">@style/Popupbgstyle</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="PopupMenu" parent="@style/Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@color/lavender</item>
+        <item name="popupMenuStyle">@color/lavender</item>
+
+    </style>
+    <style name="BottomSheetDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetBackground</item>
+    </style>
+
+    <style name="bottomSheetBackground" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_top_corners</item>
+    </style>
+    <style name="Popupbgstyle" parent ="Widget.MaterialComponents.PopupMenu">
+        <item name="android:popupBackground">@drawable/menu_bg</item>
+    </style>
+
+</resources>
