@@ -9,10 +9,14 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.notesmvvm.Activity.InsertNoteActivity;
@@ -22,13 +26,15 @@ import com.example.notesmvvm.Repository.NotesRepository;
 import com.example.notesmvvm.ViewModel.NotesViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     FloatingActionButton create_note;
     RecyclerView notesRecycler;
     NotesAdapter adapter;
-
+    EditText searchView;
+    List<Notes> allNotes;
 
 
     @Override
@@ -38,8 +44,25 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setElevation(0.0f);
         create_note = findViewById(R.id.create_note);
         notesRecycler = findViewById(R.id.notesRecycler);
+        searchView = findViewById(R.id.search_edittext);
         NotesViewModel notesViewModel;
 
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                NotesFilter(String.valueOf(s));
+            }
+        });
 
         create_note.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,10 +76,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Notes> notes) {
                 setAdapter(notes);
+                allNotes = notes;
 
             }
         });
 
+
+
+    }
+
+    private void NotesFilter(String newText) {
+
+        ArrayList<Notes> filternames = new ArrayList<>();
+
+        for(Notes notes:this.allNotes )
+        {
+             if(notes.notesTitle.contains(newText) || notes.notesSubtitle.contains(newText))
+             {
+                 filternames.add(notes);
+             }
+        }
+        this.adapter.searchNotes(filternames);
 
     }
 
@@ -65,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         notesRecycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         adapter = new NotesAdapter(MainActivity.this,notes);
         notesRecycler.setAdapter(adapter);
+
 
     }
 
@@ -87,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onChanged(List<Notes> notes) {
                     setAdapter(notes);
-
+                    allNotes = notes;
                 }
             });
         }
@@ -100,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onChanged(List<Notes> notes) {
                     setAdapter(notes);
+                    allNotes = notes;
 
                 }
             });
