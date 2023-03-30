@@ -34,6 +34,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         this.notes  = notes;
     }
 
+    public void searchNotes(List<Notes> filteredNotes)
+    {
+        this.notes = filteredNotes;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView notestitle,notessubtitle,notesdate;
         View notespriority;
