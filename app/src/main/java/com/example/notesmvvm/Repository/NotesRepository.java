@@ -15,6 +15,8 @@ public class NotesRepository {
 
     public NotesDao notesDao;
     public LiveData<List<Notes>> getAllNotes;
+    public LiveData<List<Notes>> oldestfirst;
+    public LiveData<List<Notes>> newestfirst;
 
     public NotesRepository(Application application)
     {
@@ -22,6 +24,8 @@ public class NotesRepository {
 
         notesDao = database.notesDao();
         getAllNotes = notesDao.getAllNotes();
+        oldestfirst = notesDao.oldestfirst();
+        newestfirst = notesDao.newestfirst();
     }
 
     public void insertNotes(Notes notes)
