@@ -16,11 +16,15 @@ public class NotesViewModel extends AndroidViewModel {
     public NotesRepository repository;
 
     public LiveData<List<Notes>> getAllNotes;
+    public LiveData<List<Notes>> oldestfirst;
+    public LiveData<List<Notes>> newestfirst;
     public NotesViewModel(@NonNull Application application) {
         super(application);
 
         repository = new NotesRepository(application);
         getAllNotes = repository.getAllNotes;
+        oldestfirst = repository.oldestfirst;
+        newestfirst = repository.newestfirst;
     }
 
     public void insertNote(Notes notes)
