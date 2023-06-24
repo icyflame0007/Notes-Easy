@@ -42,14 +42,14 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView notestitle,notessubtitle,notesdate;
-        View notespriority;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             notestitle = itemView.findViewById(R.id.notetitle);
             notessubtitle = itemView.findViewById(R.id.notessubtitle);
             notesdate = itemView.findViewById(R.id.notesdate);
-            notespriority = itemView.findViewById(R.id.notespriority);
+
         }
     }
 
@@ -68,21 +68,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         holder.notesdate.setText(note.notesDate);
 
         notesViewModel = new ViewModelProvider(mainActivity).get(NotesViewModel.class);
-        if(note.notesPriority.equals("1"))
 
-        {
-          holder.notespriority.setBackgroundResource(R.drawable.green_circle);
-
-        }
-        else if(note.notesPriority.equals("2"))
-        {
-            holder.notespriority.setBackgroundResource(R.drawable.yellow_circle);
-        }
-        else if(note.notesPriority.equals("3"))
-        {
-            holder.notespriority.setBackgroundResource(R.drawable.red_circle);
-
-        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +77,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
               intent.putExtra("id",note.id);
               intent.putExtra("title",note.notesTitle);
               intent.putExtra("subtitle",note.notesSubtitle);
-              intent.putExtra("priority",note.notesPriority);
               intent.putExtra("notes",note.notes);
               mainActivity.startActivity(intent);
             }
@@ -121,7 +106,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                             intent.putExtra("id",note.id);
                             intent.putExtra("title",note.notesTitle);
                             intent.putExtra("subtitle",note.notesSubtitle);
-                            intent.putExtra("priority",note.notesPriority);
                             intent.putExtra("notes",note.notes);
                             mainActivity.startActivity(intent);
 
