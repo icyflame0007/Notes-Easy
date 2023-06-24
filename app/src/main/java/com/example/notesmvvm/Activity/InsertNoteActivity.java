@@ -20,7 +20,6 @@ import java.util.Date;
 public class InsertNoteActivity extends AppCompatActivity {
     EditText insrt_title,insrt_subtitle,insrt_notes;
     FloatingActionButton insrt_done;
-    ImageView greenpriority,yellowpriority,redpriority;
     NotesViewModel notesViewModel;
     String priority = "1";
 
@@ -29,9 +28,7 @@ public class InsertNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_note);
 
-        greenpriority = findViewById(R.id.greenpriority);
-        yellowpriority = findViewById(R.id.yellowpriority);
-        redpriority = findViewById(R.id.redpriority);
+
         insrt_title = findViewById(R.id.insrt_title);
         insrt_subtitle = findViewById(R.id.insrt_subtitle);
         insrt_notes = findViewById(R.id.insrt_notes);
@@ -40,36 +37,7 @@ public class InsertNoteActivity extends AppCompatActivity {
         notesViewModel = new ViewModelProvider(this).get(NotesViewModel.class);
 
 
-        greenpriority.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                greenpriority.setImageResource(R.drawable.done);
-                yellowpriority.setImageResource(0);
-                redpriority.setImageResource(0);
-                priority = "1";
 
-            }
-        });
-        yellowpriority.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                greenpriority.setImageResource(0);
-                yellowpriority.setImageResource(R.drawable.done);
-                redpriority.setImageResource(0);
-                priority = "2";
-
-            }
-        });
-        redpriority.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                greenpriority.setImageResource(0);
-                yellowpriority.setImageResource(0);
-                redpriority.setImageResource(R.drawable.done);
-                priority = "3";
-
-            }
-        });
 
 
         insrt_done.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +62,6 @@ public class InsertNoteActivity extends AppCompatActivity {
         notes1.notesSubtitle =  subtitle;
         notes1.notes = notes;
         notes1.notesDate = (String)format;
-        notes1.notesPriority = priority;
         notesViewModel.insertNote(notes1);
 
     }

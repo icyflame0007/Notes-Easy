@@ -22,7 +22,6 @@ public class Notes {
     @ColumnInfo(name = "notes_date")
     public String notesDate;
 
-    @ColumnInfo(name = "notes_priority")
-    public String notesPriority;
+
 
 }
